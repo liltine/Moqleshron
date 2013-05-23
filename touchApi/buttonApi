@@ -17,8 +17,8 @@ function button.new (atext,acolor,ax,ay,acallback)
 	local callback=acallback
 	local text = atext
 	local color= acolor
-	self.x=ax
-	self.y=ay
+	local x=ax
+	local y=ay
 	function isClicked(cx,cy)
 		if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
 		callback()
