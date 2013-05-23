@@ -5,6 +5,7 @@ function init(termside)
 	term = peripheral.wrap(termside)
 end
 function clear()
+	term.setBackgroundColor(colors.black)
 	term.clear()
 end
 button = {}
