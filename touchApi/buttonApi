@@ -1,14 +1,16 @@
 
 local buttons={}
-local side=""
+local term
 function init(termside)
-	side=termside
+	term = peripheral.wrap(termside)
 end
-
+function clear()
+	term.clear()
+end
 button = {}
 function button.new (atext,acolor,ax,ay)
 	local self = {}
-	local term = peripheral.wrap(side)
+	
 	local text = atext
 	local color= acolor
 	local x=ax
