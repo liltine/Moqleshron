@@ -1,6 +1,9 @@
 
 local buttons={}
-
+local side=""
+function init(termside)
+	side=termside
+end
 
 button = {}
 function button.new (atext,acolor,ax,ay)
