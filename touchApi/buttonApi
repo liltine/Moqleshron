@@ -24,5 +24,5 @@ function button.new (side,atext,acolor,ax,ay)
 	return self
 end
 
-local b = button.new ("right","test",colors.green,2,2)
-b.draw()
+--local b = button.new ("right","test",colors.green,2,2)
+--b.draw()
