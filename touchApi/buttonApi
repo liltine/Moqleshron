@@ -22,7 +22,12 @@ function button.new (atext,acolor,ax,ay,acallback)
 	local key=0
 	function self.isClicked(cx,cy)
 		if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
+		local tcol=color
+		color=colors.red
+		self.draw()
 		callback()
+		color=tcol
+		self.draw()
 		end
 	end
 	function self.draw()
@@ -57,5 +62,14 @@ function redraw()
 		end
 	end
 end
+function touchWait ()
+event, touch, x, y = os.pullEvent("monitor_touch")
+	for k,b in pairs(buttons) do
+		if(b ~= nil) then
+			b.isClicked(x,y)
+		end
+	end
+end
+
 --local b = button.new ("right","test",colors.green,2,2)
 --b.draw()

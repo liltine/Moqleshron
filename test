@@ -4,7 +4,5 @@ buttonApi.clear()
 local b = buttonApi.button.new ("test",colors.green,2,2)
 local b2 = buttonApi.button.new ("test2",colors.red,22,12)
 buttonApi.redraw()
-sleep(10)
-b2.delete()
 
-buttonApi.redraw()
+buttonApi.touchWait()
