@@ -26,6 +26,7 @@ function button.new (atext,acolor,ax,ay,acallback)
 		color=colors.red
 		self.draw()
 		callback()
+		sleep(0.1)
 		color=tcol
 		self.draw()
 		end
