@@ -1,12 +1,19 @@
-button = {}
 
-function button.new (side,atext,acolor,ax,ay)
+local buttons={}
+side=""
+
+button = {}
+function button.new (atext,acolor,ax,ay)
 	local self = {}
 	local term = peripheral.wrap(side)
 	local text = atext
 	local color= acolor
 	local x=ax
 	local y=ay
+	
+	function isClicked(cx,cy)
+		return ((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2))
+	end
 	
 	function self.draw()
 		term.setBackgroundColor(color)
@@ -20,9 +27,11 @@ function button.new (side,atext,acolor,ax,ay)
 		term.setCursorPos(x,y+2)
 		term.write(string.rep(" ",string.len (text)+2))
 	end
+	table.insert(buttons,self)
 	
 	return self
 end
+
 
 --local b = button.new ("right","test",colors.green,2,2)
 --b.draw()

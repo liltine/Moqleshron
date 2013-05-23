@@ -1,3 +1,4 @@
 os.loadAPI("/touchApi/buttonApi")
-local b = buttonApi.button.new ("right","test",colors.green,2,2)
+buttonApi.side="right"
+local b = buttonApi.button.new ("test",colors.green,2,2)
 b.draw()
