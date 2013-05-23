@@ -19,7 +19,8 @@ function button.new (atext,acolor,ax,ay,acallback)
 	local color= acolor
 	local x=ax
 	local y=ay
-	function isClicked(cx,cy)
+	local key=0
+	function self.isClicked(cx,cy)
 		if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
 		callback()
 		end
@@ -36,14 +37,24 @@ function button.new (atext,acolor,ax,ay,acallback)
 		term.setCursorPos(x,y+2)
 		term.write(string.rep(" ",string.len (text)+2))
 	end
-	table.insert(buttons,self)	
+	
+	function self.delete()
+		buttons[key]={}
+	end
+	
+	table.insert(buttons,self)
+	
+	key= table.maxn(buttons)
+	
 	return self
 end
 
 function redraw()
 	clear()
 	for k,b in pairs(buttons) do
-	b.draw()
+		if(b <> nil) then
+		b.draw()
+		end
 	end
 end
 --local b = button.new ("right","test",colors.green,2,2)
