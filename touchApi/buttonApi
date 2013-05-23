@@ -42,7 +42,7 @@ end
 
 function redraw()
 	clear()
-	for b in butons do
+	for k,b in pairs(buttons) do
 	b.draw()
 	end
 end
