@@ -1,6 +1,6 @@
 
 local buttons={}
-side=""
+
 
 button = {}
 function button.new (atext,acolor,ax,ay)
