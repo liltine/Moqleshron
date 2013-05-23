@@ -1,8 +1,8 @@
 os.loadAPI("/touchApi/buttonApi")
 buttonApi.init("right")
 buttonApi.clear()
-local b = buttonApi.button.new ("test",colors.green,2,2,=function() write("test pressed") end)
-local b2 = buttonApi.button.new ("test2",colors.green,22,12,=function() write("test2 pressed") end)
+local b = buttonApi.button.new ("test",colors.green,2,2,function() write("test pressed") end)
+local b2 = buttonApi.button.new ("test2",colors.green,22,12,function() write("test2 pressed") end)
 buttonApi.redraw()
 
 buttonApi.touchWait()
