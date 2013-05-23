@@ -52,7 +52,7 @@ end
 function redraw()
 	clear()
 	for k,b in pairs(buttons) do
-		if(b <> nil) then
+		if(b ~= nil) then
 		b.draw()
 		end
 	end
