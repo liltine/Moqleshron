@@ -39,7 +39,7 @@ function button.new (atext,acolor,ax,ay,acallback)
 	end
 	
 	function self.delete()
-		buttons[key]={}
+		buttons[key]=nil
 	end
 	
 	table.insert(buttons,self)
