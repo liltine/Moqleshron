@@ -56,6 +56,39 @@ end
 	return self
 end
 
+label = {}
+function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
+	local self = {}
+	local text = atext
+	local posx=aposx
+	local posy=aposy
+	local form=aform
+	local key=0
+	
+	self.color = acolor
+	self.bgcolor = abgcolor
+	
+	function self.isClicked(cx,cy)
+	
+	end
+	
+	function self.draw()
+		form.mon.setBackgroundColor(bgcolor)
+		form.mon.setTextColor(bgcolor)
+		form.mon.write(text)
+	end
+	
+	function self.delete()
+		form.deleteObject(key)
+	end
+	
+	key=form.addObject(self)
+	
+	return self
+	
+end
+
+
 button = {}
 function button.new (aform,atext,acolor,ax,ay,acallback)
 	local self = {}
