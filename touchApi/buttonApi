@@ -130,7 +130,7 @@ function progressBar.new(aform,atext,acolor,aposx,aposy,awidth,amax,adataProvide
 			form.mon.write(temptext)
 			form.mon.setBackgroundColor(colors.black)
 			form.mon.setTextColor(color)
-			form.mon.setCursorPos(posx+gradCount+1,posy)
+			form.mon.setCursorPos(posx+gradCount,posy)
 			form.mon.write(temptextend)
 		end
 	end
