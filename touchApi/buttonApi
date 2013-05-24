@@ -76,7 +76,7 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 		form.mon.setBackgroundColor(self.bgcolor)
 		form.mon.setTextColor(self.color)
 		form.mon.setCursorPos(posx,posy)
-		form.mon.write(self.ext)
+		form.mon.write(self.text)
 	end
 	
 	function self.delete()
