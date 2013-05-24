@@ -73,8 +73,8 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 	end
 	
 	function self.draw()
-		form.mon.setBackgroundColor(bgcolor)
-		form.mon.setTextColor(bgcolor)
+		form.mon.setBackgroundColor(self.bgcolor)
+		form.mon.setTextColor(self.color)
 		form.mon.write(text)
 	end
 	
