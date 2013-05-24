@@ -94,6 +94,7 @@ progressBar={}
 function progressBar.new(aform,atext,acolor,aposx,aposy,awidth,amax,adataProvider)
 	local self = {}
 	local title= atext
+	local color=acolor
 	local posx=aposx
 	local posy=aposy
 	local max=amax

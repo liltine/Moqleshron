@@ -12,10 +12,10 @@ end
 form1.init("right")
 
 
-local b = buttonApi.button.new (form1,"test",colors.green,2,16,function() write("test pressed\n") end)
-local b2 = buttonApi.button.new (form1,"test2",colors.green,10,16,function() write("test2 pressed\n") end)
-local g1 = buttonApi.timeGraph.new(form1,"graph1",1,1,38,13,getGraphValue,1)
-local label1=buttonApi.label.new(form1,"labeltest",18,17,colors.red,colors.white)
-local progress=buttonApi.progressBar.new(form1,"progress",colors.green,18,18,20,10,getGraphValue)
+--local b = buttonApi.button.new (form1,"test",colors.green,2,16,function() write("test pressed\n") end)
+--local b2 = buttonApi.button.new (form1,"test2",colors.green,10,16,function() write("test2 pressed\n") end)
+--local g1 = buttonApi.timeGraph.new(form1,"graph1",1,1,38,13,getGraphValue,1)
+--local label1=buttonApi.label.new(form1,"labeltest",18,17,colors.red,colors.white)
+local progress=buttonApi.progressBar.new(form1,"progress",colors.green,1,18,20,10,getGraphValue)
 
-parallel.waitForAny(form1.eventGraber,form1.refresh,g1.run)
+parallel.waitForAny(form1.eventGraber,form1.refresh)
