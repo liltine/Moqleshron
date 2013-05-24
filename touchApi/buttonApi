@@ -2,15 +2,15 @@ form={}
 function form.new()
 	local self = {}
 	local objects = {}
-	local mon
+	self.mon
 
 	function self.init(monside)
-		mon = peripheral.wrap(monside)
+		self.mon = peripheral.wrap(monside)
 	end
 
 	function self.clear()
-		mon.setBackgroundColor(colors.black)
-		mon.clear()
+		self.mon.setBackgroundColor(colors.black)
+		self.mon.clear()
 	end
 
 	function self.redraw()
@@ -65,16 +65,16 @@ function button.new (aform,atext,acolor,ax,ay,acallback)
 		end
 	end
 	function self.draw()
-		mon.setBackgroundColor(color)
+		form.mon.setBackgroundColor(color)
 		
-		mon.setCursorPos(x,y)
-		mon.write(string.rep(" ",string.len (text)+2))
+		form.mon.setCursorPos(x,y)
+		form.mon.write(string.rep(" ",string.len (text)+2))
 		
-		mon.setCursorPos(x,y+1)
-		mon.write(" "..text.." ")
+		form.mon.setCursorPos(x,y+1)
+		form.mon.write(" "..text.." ")
 		
-		mon.setCursorPos(x,y+2)
-		mon.write(string.rep(" ",string.len (text)+2))
+		form.mon.setCursorPos(x,y+2)
+		form.mon.write(string.rep(" ",string.len (text)+2))
 	end
 	
 	function self.delete()
@@ -126,19 +126,19 @@ function timeGraph.new(aform,atitle,aposx,aposy,awidth,aheight,adataProvider,ain
 	
 	function self.draw()
 		local max = getmax()
-		term.redirect(mon)
+		term.redirect(form.mon)
 		paintutils.drawLine(posx,posy,posx+width,posy,colors.white)
 		paintutils.drawLine(posx,posy+height,posx+width,posy+height,colors.white)
 		paintutils.drawLine(posx,posy,posx,posy+height,colors.white)
 		paintutils.drawLine(posx+width,posy,posx+width,posy+height,colors.white)
 		--sleep(1)
 		term.restore()
-		mon.setCursorPos(posx+math.floor((width-string.len(title))/2),posy)
-		mon.setBackgroundColor(colors.white)
-		mon.setTextColor(colors.black)
-		mon.write(title)
+		form.mon.setCursorPos(posx+math.floor((width-string.len(title))/2),posy)
+		form.mon.setBackgroundColor(colors.white)
+		form.mon.setTextColor(colors.black)
+		form.mon.write(title)
 		if max>0 then
-		term.redirect(mon)
+		term.redirect(form.mon)
 			for k,v in pairs(values) do
 				local gy=math.floor(v/max*(height-2))
 				paintutils.drawPixel(posx+k,posy+height-1-gy,colors.lime)
@@ -146,11 +146,11 @@ function timeGraph.new(aform,atitle,aposx,aposy,awidth,aheight,adataProvider,ain
 		term.restore()
 		end
 		
-		mon.setBackgroundColor(colors.white)
-		mon.setTextColor(colors.black)
+		form.mon.setBackgroundColor(colors.white)
+		form.mon.setTextColor(colors.black)
 		legend= "max :"..max.."  current :"..values[width-2].." sampling :"..interval.."s"
-		mon.setCursorPos(posx+math.floor((width-string.len(legend))/2),posy+height)
-		mon.write(legend)
+		form.mon.setCursorPos(posx+math.floor((width-string.len(legend))/2),posy+height)
+		form.mon.write(legend)
 	end
 	function self.isClicked(cx,cy)
 		--if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
