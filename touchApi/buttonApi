@@ -1,42 +1,56 @@
+local form={}
+function form.new()
+	local objects={}
+	local mon
 
-local objects={}
-local mon
+	function self.init(monside)
+		mon = peripheral.wrap(monside)
+	end
 
-function init(monside)
-	mon = peripheral.wrap(monside)
-end
+	function self.clear()
+		mon.setBackgroundColor(colors.black)
+		mon.clear()
+	end
 
-function clear()
-	mon.setBackgroundColor(colors.black)
-	mon.clear()
-end
-
-function redraw()
-	clear()
-	for k,o in pairs(objects) do
-		if(o ~= nil) then
-		o.draw()
+	function self.redraw()
+		clear()
+		for k,o in pairs(objects) do
+			if(o ~= nil) then
+			o.draw()
+			end
 		end
 	end
-end
-function touchWait ()
-event, touch, x, y = os.pullEvent("monitor_touch")
-	for k,o in pairs(objects) do
-		if(o ~= nil) then
-			o.isClicked(x,y)
+	
+	function self.touchWait ()
+		event, touch, x, y = os.pullEvent("monitor_touch")
+		for k,o in pairs(objects) do
+			if(o ~= nil) then
+				o.isClicked(x,y)
+			end
 		end
 	end
+	
+	function self.addObject(o)
+		table.insert(objects,o)
+		return table.maxn(objects)
+	end
+	
+	function self.deleteObject(key)
+		objects[key]=nil
+	end
+	
+	return self
 end
-
 
 button = {}
-function button.new (atext,acolor,ax,ay,acallback)
+function button.new (aform,atext,acolor,ax,ay,acallback)
 	local self = {}
 	local callback=acallback
 	local text = atext
 	local color= acolor
 	local x=ax
 	local y=ay
+	local form=aform
 	local key=0
 	function self.isClicked(cx,cy)
 		if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
@@ -63,19 +77,16 @@ function button.new (atext,acolor,ax,ay,acallback)
 	end
 	
 	function self.delete()
-		objects[key]=nil
+		form.deleteObject(key)
 	end
 	
-	table.insert(objects,self)
-	
-	key= table.maxn(objects)
+	key=form.addObject(self)
 	
 	return self
 end
 
 timeGraph = {}
-
-function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval)
+function timeGraph.new(aform,atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval)
 	local self= {}
 	local values={}
 	local title= atitle
@@ -85,6 +96,7 @@ function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval
 	local height=aheight
 	local dataProvider=adataProvider
 	local interval = ainterval
+	local form=aform
 	local key=0
 	
 	for k=1,width-2 do
@@ -145,13 +157,12 @@ function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval
 		--end
 	end
 	
+	
 	function self.delete()
-		objects[key]=nil
+		form.deleteObject(key)
 	end
 	
-	table.insert(objects,self)
-	
-	key= table.maxn(objects)
+	key=form.addObject(self)
 	
 	return self
 end
