@@ -90,7 +90,7 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 end
 
 
-progressBar{}
+progressBar={}
 function progressBar.new(aform,atext,acolor,aposx,aposy,awidth,amax,adataProvider)
 	local self = {}
 	local title= atext
