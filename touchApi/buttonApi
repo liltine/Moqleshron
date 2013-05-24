@@ -1,4 +1,4 @@
-local form={}
+form={}
 function form.new()
 	local self = {}
 	local objects = {}
