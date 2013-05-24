@@ -113,7 +113,7 @@ function timeGraph.new(aform,atitle,aposx,aposy,awidth,aheight,adataProvider,ain
 	local form=aform
 	local key=0
 	
-	for k=1,width-2 do
+	for k=1,width-1 do
 		table.insert(values,0)
 	end
 	
