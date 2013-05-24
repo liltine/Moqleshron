@@ -1,14 +1,14 @@
 
 local objects={}
-local term
+local mon
 
-function init(termside)
-	term = peripheral.wrap(termside)
+function init(monside)
+	mon = peripheral.wrap(monside)
 end
 
 function clear()
-	term.setBackgroundColor(colors.black)
-	term.clear()
+	mon.setBackgroundColor(colors.black)
+	mon.clear()
 end
 
 function redraw()
@@ -50,16 +50,16 @@ function button.new (atext,acolor,ax,ay,acallback)
 		end
 	end
 	function self.draw()
-		term.setBackgroundColor(color)
+		mon.setBackgroundColor(color)
 		
-		term.setCursorPos(x,y)
-		term.write(string.rep(" ",string.len (text)+2))
+		mon.setCursorPos(x,y)
+		mon.write(string.rep(" ",string.len (text)+2))
 		
-		term.setCursorPos(x,y+1)
-		term.write(" "..text.." ")
+		mon.setCursorPos(x,y+1)
+		mon.write(" "..text.." ")
 		
-		term.setCursorPos(x,y+2)
-		term.write(string.rep(" ",string.len (text)+2))
+		mon.setCursorPos(x,y+2)
+		mon.write(string.rep(" ",string.len (text)+2))
 	end
 	
 	function self.delete()
@@ -86,10 +86,12 @@ function graph.new(atitle,axtable,aytable,aposx,aposy,awidth,aheight)
 	local height=aheight
 	local key=0
 	function self.draw()
+		term.redirect(mon)
 		paintutils.drawLine(posx,posy,posx+width,posy,colors.white)
 		paintutils.drawLine(posx,posy+height,posx+width,posy+height,colors.white)
 		paintutils.drawLine(posx,posy,posx,posy+height,colors.white)
 		paintutils.drawLine(posx+width,posy,posx+width,posy+height,colors.white)
+		term.restore()
 	end
 	function self.isClicked(cx,cy)
 		--if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
