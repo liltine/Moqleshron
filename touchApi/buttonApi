@@ -118,7 +118,7 @@ function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval
 		paintutils.drawLine(posx,posy+height,posx+width,posy+height,colors.white)
 		paintutils.drawLine(posx,posy,posx,posy+height,colors.white)
 		paintutils.drawLine(posx+width,posy,posx+width,posy+height,colors.white)
-		sleep(1)
+		--sleep(1)
 		term.restore()
 		mon.setCursorPos(posx+math.floor((width-string.len(title))/2),posy)
 		mon.setBackgroundColor(colors.white)
@@ -128,7 +128,7 @@ function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval
 		term.redirect(mon)
 			for k,v in pairs(values) do
 				local gy=math.floor(v/max*(height-2))
-				paintutils.drawPixel(posx+k,posy+1-gy,colors.lime)
+				paintutils.drawPixel(posx+k,posy+height-1-gy,colors.lime)
 			end
 		term.restore()
 		end
