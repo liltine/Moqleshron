@@ -1,8 +1,8 @@
 os.loadAPI("/touchApi/buttonApi")
 buttonApi.init("right")
 buttonApi.clear()
-local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
-local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
+local b = buttonApi.button.new ("test",colors.green,2,17,function() write("test pressed\n") end)
+local b2 = buttonApi.button.new ("test2",colors.green,10,17,function() write("test2 pressed\n") end)
 local g1 = buttonApi.graph.new("graph1",0,0,1,1,38,14)
 buttonApi.redraw()
 while true do
