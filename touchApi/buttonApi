@@ -93,6 +93,10 @@ function graph.new(atitle,axtable,aytable,aposx,aposy,awidth,aheight)
 		paintutils.drawLine(posx+width,posy,posx+width,posy+height,colors.white)
 		sleep(1)
 		term.restore()
+		mon.setCursorPos(posx+math.floor((width-string.len(title))/2),posy)
+		mon.setBackgroundColor(colors.white)
+		mon.setTextColor(colors.black)
+		mon.write(title)
 	end
 	function self.isClicked(cx,cy)
 		--if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
