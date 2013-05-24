@@ -154,7 +154,7 @@ function timeGraph.new(aform,atitle,aposx,aposy,awidth,aheight,adataProvider,ain
 		term.redirect(form.mon)
 			for k,v in pairs(values) do
 				local gy=math.floor(v/max*(height-2))
-				paintutils.drawLine(posx+k,posy+height-1-gy,posw+k,posy+height-1,colors.lime)
+				paintutils.drawLine(posx+k,posy+height-1-gy,posx+k,posy+height-1,colors.lime)
 			end
 		term.restore()
 		end
