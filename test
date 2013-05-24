@@ -10,7 +10,7 @@ function getValue()
 	return (math.sin(t*0.3)+1)*5
 end
 
-form1.init("right")
+form1.init("right",0.5)
 
 
 local b = buttonApi.button.new (form1,"test",colors.green,2,16,function() write("test pressed\n") end)

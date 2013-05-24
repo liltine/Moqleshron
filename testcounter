@@ -9,7 +9,7 @@ function getGraphValue()
 	return data["average"]
 end
 
-form1.init("right")
+form1.init("right",1)
 
 
 
