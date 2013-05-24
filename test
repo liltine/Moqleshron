@@ -16,7 +16,7 @@ end
 
 function getGraphValue()
 	t=t+1
-	return (math.sin(t)+1)*5
+	return (math.sin(t*0.1)+1)*5
 end
 
 buttonApi.init("right")
