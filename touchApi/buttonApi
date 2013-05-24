@@ -23,7 +23,7 @@ function form.new()
 	end
 	
 	function self.touchWait ()
-		event, touch, x, y = os.pullEvent("monitor_touch")
+		local event, touch, x, y = os.pullEvent("monitor_touch")
 		for k,o in pairs(objects) do
 			if(o ~= nil) then
 				o.isClicked(x,y)
