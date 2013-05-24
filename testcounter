@@ -1,15 +1,15 @@
 os.loadAPI("/touchApi/buttonApi")
-
+local form1 = buttonApi.form.new()
 local t=0
 function eventGraber()
 	while true do
-		buttonApi.touchWait()
+		form1.touchWait()
 	end
 end
 
 function refresh()
 	while true do
-		buttonApi.redraw()
+		form1.redraw()
 		sleep(1)
 	end
 end
@@ -20,12 +20,12 @@ function getGraphValue()
 	return data["average"]
 end
 
-buttonApi.init("right")
-buttonApi.clear()
+form1.init("right")
+form1.clear()
 
 local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
 local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
 local g1 = buttonApi.timeGraph.new("Inc Eu/t",1,1,38,13,getGraphValue,1)
-buttonApi.redraw()
+form1.redraw()
 
 parallel.waitForAny(eventGraber,refresh,g1.run)
