@@ -25,7 +25,7 @@ buttonApi.clear()
 
 local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
 local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
-local g1 = buttonApi.timeGraph.new("graph1",1,1,38,13,getGraphValue,1)
+local g1 = buttonApi.timeGraph.new("Inc Eu/t",1,1,38,13,getGraphValue,1)
 buttonApi.redraw()
 
 parallel.waitForAny(eventGraber,refresh,g1.run)
