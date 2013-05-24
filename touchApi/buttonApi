@@ -132,6 +132,12 @@ function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval
 			end
 		term.restore()
 		end
+		
+		mon.setBackgroundColor(colors.white)
+		mon.setTextColor(colors.black)
+		legend= "max :"..max.."  current :"..values[width-2]
+		mon.setCursorPos(posx+math.floor((width-string.len(legend))/2),posy+height)
+		mon.write(legend)
 	end
 	function self.isClicked(cx,cy)
 		--if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
