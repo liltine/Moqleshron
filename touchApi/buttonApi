@@ -1,5 +1,5 @@
 
-local buttons={}
+local objects={}
 local term
 
 function init(termside)
@@ -10,6 +10,24 @@ function clear()
 	term.setBackgroundColor(colors.black)
 	term.clear()
 end
+
+function redraw()
+	clear()
+	for k,o in pairs(objects) do
+		if(o ~= nil) then
+		o.draw()
+		end
+	end
+end
+function touchWait ()
+event, touch, x, y = os.pullEvent("monitor_touch")
+	for k,o in pairs(objects) do
+		if(o ~= nil) then
+			o.isClicked(x,y)
+		end
+	end
+end
+
 
 button = {}
 function button.new (atext,acolor,ax,ay,acallback)
@@ -45,31 +63,49 @@ function button.new (atext,acolor,ax,ay,acallback)
 	end
 	
 	function self.delete()
-		buttons[key]=nil
+		objects[key]=nil
 	end
 	
-	table.insert(buttons,self)
+	table.insert(objects,self)
 	
-	key= table.maxn(buttons)
+	key= table.maxn(objects)
 	
 	return self
 end
 
-function redraw()
-	clear()
-	for k,b in pairs(buttons) do
-		if(b ~= nil) then
-		b.draw()
-		end
+graph = {}
+
+function graph.new(atitle,axtable,aytable,aposx,aposy,awidth,aheight)
+	local self= {}
+	local title= atitle
+	local xtable=axtable
+	local ytable=aytable
+	local posx=aposx
+	local posy=aposy
+	local width=awidth
+	local height=aheight
+	local key=0
+	function self.draw()
+		paintutils.drawLine(posx,posy,posx+width,posy,colors.white)
+		paintutils.drawLine(posx,posy+height,posx+width,posy+height,colors.white)
+		paintutils.drawLine(posx,posy,posx,posy+height,colors.white)
+		paintutils.drawLine(posx+width,posy,posx+width,posy+height,colors.white)
 	end
-end
-function touchWait ()
-event, touch, x, y = os.pullEvent("monitor_touch")
-	for k,b in pairs(buttons) do
-		if(b ~= nil) then
-			b.isClicked(x,y)
-		end
+	function self.isClicked(cx,cy)
+		--if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
+		--callback()
+		--end
 	end
+	
+	function self.delete()
+		objects[key]=nil
+	end
+	
+	table.insert(objects,self)
+	
+	key= table.maxn(objects)
+	
+	return self
 end
 
 --local b = button.new ("right","test",colors.green,2,2)
