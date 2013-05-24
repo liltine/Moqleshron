@@ -169,7 +169,7 @@ function button.new (aform,atext,acolor,ax,ay,acallback)
 	end
 	function self.draw()
 		form.mon.setBackgroundColor(color)
-		
+		form.mon.setTextColor(colors.black)
 		form.mon.setCursorPos(x,y)
 		form.mon.write(string.rep(" ",string.len (text)+2))
 		
