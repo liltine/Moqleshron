@@ -40,6 +40,19 @@ function form.new()
 		objects[key]=nil
 	end
 	
+	function self.eventGraber()
+		while true do
+			self.touchWait()
+		end
+	end
+	
+	function self.refresh()
+		while true do
+			self.redraw()
+			sleep(1)
+		end
+end
+	
 	return self
 end
 

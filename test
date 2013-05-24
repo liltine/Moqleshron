@@ -1,18 +1,6 @@
 os.loadAPI("/touchApi/buttonApi")
 local form1 = buttonApi.form.new()
 local t=0
-function eventGraber()
-	while true do
-		form1.touchWait()
-	end
-end
-
-function refresh()
-	while true do
-		form1.redraw()
-		sleep(1)
-	end
-end
 
 function getGraphValue()
 	t=t+1
@@ -22,11 +10,10 @@ end
 
 
 form1.init("right")
-form1.clear()
+
 
 local b = buttonApi.button.new (form1,"test",colors.green,2,16,function() write("test pressed\n") end)
 local b2 = buttonApi.button.new (form1,"test2",colors.green,10,16,function() write("test2 pressed\n") end)
 local g1 = buttonApi.timeGraph.new(form1,"graph1",1,1,38,13,getGraphValue,1)
-form1.redraw()
 
-parallel.waitForAny(eventGraber,refresh,g1.run)
+parallel.waitForAny(form1.eventGraber,form1.refresh,g1.run)
