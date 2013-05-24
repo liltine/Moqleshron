@@ -9,12 +9,12 @@ function getGraphValue()
 	return data["average"]
 end
 
-form1.init("right",1)
+form1.init("right",0.5)
 
 
 
-local g1 = buttonApi.timeGraph.new(form1,"Inc Eu/t",1,1,38,13,getGraphValue,1)
-local b = buttonApi.button.new (form1,"red",colors.green,2,16,function() g1.color=colors.red end)
-local b2 = buttonApi.button.new (form1,"blue",colors.green,10,16,function() g1.color=colors.blue end)
+local g1 = buttonApi.timeGraph.new(form1,"Inc Eu/t",1,1,76,26,getGraphValue,1)
+local b = buttonApi.button.new (form1,"red",colors.green,2,28,function() g1.color=colors.red end)
+local b2 = buttonApi.button.new (form1,"blue",colors.green,10,28,function() g1.color=colors.blue end)
 
 parallel.waitForAny(form1.eventGraber,form1.refresh,g1.run)
