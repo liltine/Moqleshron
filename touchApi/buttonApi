@@ -161,7 +161,7 @@ function timeGraph.new(aform,atitle,aposx,aposy,awidth,aheight,adataProvider,ain
 		
 		form.mon.setBackgroundColor(colors.white)
 		form.mon.setTextColor(colors.black)
-		legend= "max :"..max.."  current :"..values[width-2].." sampling :"..interval.."s"
+		legend= "max :"..max.." current :"..values[width-2].." sampling :"..interval.."s"
 		form.mon.setCursorPos(posx+math.floor((width-string.len(legend))/2),posy+height)
 		form.mon.write(legend)
 	end
