@@ -127,7 +127,7 @@ function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval
 		if max>0 then
 		term.redirect(mon)
 			for k,v in pairs(values) do
-				local gy=math.floor(v/max*(hieght-2))
+				local gy=math.floor(v/max*(height-2))
 				paintutils.drawPixel(posx+k,posy+1-gy,colors.lime)
 			end
 		term.restore()
