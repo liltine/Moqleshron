@@ -1,0 +1,31 @@
+os.loadAPI("/touchApi/buttonApi")
+
+local t=0
+function eventGraber()
+	while true do
+		buttonApi.touchWait()
+	end
+end
+
+function refresh()
+	while true do
+		buttonApi.redraw()
+		sleep(1)
+	end
+end
+
+function getGraphValue()
+	reader = peripheral.wrap("left")
+	id,state,name,data = reader.get(1)
+	return data["average"]
+end
+
+buttonApi.init("right")
+buttonApi.clear()
+
+local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
+local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
+local g1 = buttonApi.timeGraph.new("graph1",1,1,38,13,getGraphValue,1)
+buttonApi.redraw()
+
+parallel.waitForAny(eventGraber,refresh,g1.run)
