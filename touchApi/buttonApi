@@ -2,7 +2,7 @@ form={}
 function form.new()
 	local self = {}
 	local objects = {}
-	self.mon
+	self.mon={}
 
 	function self.init(monside)
 		self.mon = peripheral.wrap(monside)
