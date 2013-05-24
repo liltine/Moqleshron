@@ -1,6 +1,7 @@
 local form={}
 function form.new()
-	local objects={}
+	local self = {}
+	local objects = {}
 	local mon
 
 	function self.init(monside)

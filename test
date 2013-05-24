@@ -1,5 +1,5 @@
 os.loadAPI("/touchApi/buttonApi")
-local form1=buttonApi.form.new()
+local form1 = buttonApi.form.new()
 local t=0
 function eventGraber()
 	while true do
