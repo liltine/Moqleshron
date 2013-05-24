@@ -91,7 +91,7 @@ function graph.new(atitle,axtable,aytable,aposx,aposy,awidth,aheight)
 		paintutils.drawLine(posx,posy+height,posx+width,posy+height,colors.white)
 		paintutils.drawLine(posx,posy,posx,posy+height,colors.white)
 		paintutils.drawLine(posx+width,posy,posx+width,posy+height,colors.white)
-		sleep(5)
+		sleep(1)
 		term.restore()
 	end
 	function self.isClicked(cx,cy)
