@@ -88,6 +88,7 @@ function button.new (aform,atext,acolor,ax,ay,acallback)
 		
 		form.mon.setCursorPos(x,y+2)
 		form.mon.write(string.rep(" ",string.len (text)+2))
+		form.mon.setBackgroundColor(colors.black)
 	end
 	
 	function self.delete()
