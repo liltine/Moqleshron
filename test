@@ -1,6 +1,6 @@
 os.loadAPI("/touchApi/buttonApi")
 
-
+local t=0
 function eventGraber()
 	while true do
 		buttonApi.touchWait()
@@ -21,7 +21,7 @@ end
 
 buttonApi.init("right")
 buttonApi.clear()
-local t=0
+
 local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
 local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
 local g1 = buttonApi.timeGraph.new("graph1",1,1,38,13,getGraphValue,1)
