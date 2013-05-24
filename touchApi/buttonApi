@@ -59,12 +59,12 @@ end
 label = {}
 function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 	local self = {}
-	local text = atext
 	local posx=aposx
 	local posy=aposy
 	local form=aform
 	local key=0
 	
+	self.text = atext
 	self.color = acolor
 	self.bgcolor = abgcolor
 	
@@ -76,7 +76,7 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 		form.mon.setBackgroundColor(self.bgcolor)
 		form.mon.setTextColor(self.color)
 		form.mon.setCursorPos(posx,posy)
-		form.mon.write(text)
+		form.mon.write(self.ext)
 	end
 	
 	function self.delete()
@@ -88,6 +88,61 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 	return self
 	
 end
+
+
+progressBar{}
+function progressBar.new(aform,atext,acolor,aposx,aposy,awidth,amax,adataProvider)
+	local self = {}
+	local title= atext
+	local posx=aposx
+	local posy=aposy
+	local max=amax
+	local width=awidth
+	local dataProvider=adataProvider
+	local interval = ainterval
+	local form=aform
+	local key=0
+	local value=0
+	local grad=amax/awidth
+	
+	function self.isClicked(cx,cy)
+		
+	end
+	
+	function self.draw()
+		value=dataProvider()
+		gradCount =math.floor(value/grad)
+		percent= math.floor(value/max*100)
+		text=title.." "..percent.."%"
+		if string.len(text) <= gradCount then
+			text = text..string.rep(" ",gradCount-string.len(text))
+			form.mon.setBackgroundColor(color)
+			form.mon.setTextColor(colors.black)
+			form.mon.setCursorPos(posx,posy)
+			form.mon.write(text)
+		else
+		temptext = string.sub(text,1,gradCount)
+		temptextend = string.sub(text,gradCount+1)
+			form.mon.setBackgroundColor(color)
+			form.mon.setTextColor(colors.black)
+			form.mon.setCursorPos(posx,posy)
+			form.mon.write(temptext)
+			form.mon.setBackgroundColor(colors.black)
+			form.mon.setTextColor(color)
+			form.mon.setCursorPos(posx+gradCount+1,posy)
+			form.mon.write(temptextend)
+		end
+	end
+	
+	function self.delete()
+		form.deleteObject(key)
+	end
+	
+	key=form.addObject(self)
+	
+	return self
+end
+
 
 
 button = {}
