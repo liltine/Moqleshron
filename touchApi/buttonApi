@@ -73,19 +73,46 @@ function button.new (atext,acolor,ax,ay,acallback)
 	return self
 end
 
-graph = {}
+timeGraph = {}
 
-function graph.new(atitle,axtable,aytable,aposx,aposy,awidth,aheight)
+function timeGraph.new(atitle,aposx,aposy,awidth,aheight,adataProvider,ainterval)
 	local self= {}
+	local values={}
 	local title= atitle
-	local xtable=axtable
-	local ytable=aytable
 	local posx=aposx
 	local posy=aposy
 	local width=awidth
 	local height=aheight
+	local dataProvider=adataProvider
+	local interval = ainterval
 	local key=0
+	
+	for k=1,width-2 do
+		table.insert(values,0)
+	end
+	
+	local function getmax()
+		local max=0
+		for k,v in pairs(values) do
+			if v> max then max= v end
+		end
+		return max
+	end
+	
+	local function addValue(v)
+		table.insert(values,v)
+		table.remove(values,1)
+	end
+	
+	function self.run()
+		while true do
+			addValue(dataProvider())
+			sleep(interval)
+		end
+	end
+	
 	function self.draw()
+		local max = getmax()
 		term.redirect(mon)
 		paintutils.drawLine(posx,posy,posx+width,posy,colors.white)
 		paintutils.drawLine(posx,posy+height,posx+width,posy+height,colors.white)
@@ -97,6 +124,14 @@ function graph.new(atitle,axtable,aytable,aposx,aposy,awidth,aheight)
 		mon.setBackgroundColor(colors.white)
 		mon.setTextColor(colors.black)
 		mon.write(title)
+		if max>0 then
+		term.redirect(mon)
+			for k,v in pairs(values) do
+				local gy=math.floor(v/max*(hieght-2))
+				paintutils.drawPixel(posx+k,posy+1-gy,colors.lime)
+			end
+		term.restore()
+		end
 	end
 	function self.isClicked(cx,cy)
 		--if(((cy >= y and cy <= y+2) and ( cx >= x and cx<= x+string.len (text)+2)))then
