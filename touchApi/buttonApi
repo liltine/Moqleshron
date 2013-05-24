@@ -111,9 +111,9 @@ function progressBar.new(aform,atext,acolor,aposx,aposy,awidth,amax,adataProvide
 	
 	function self.draw()
 		value=dataProvider()
-		gradCount =math.floor(value/grad)
-		percent= math.floor(value/max*100)
-		text=title.." "..percent.."%"
+		local gradCount =math.floor(value/grad)
+		local percent= math.floor(value/max*100)
+		local text=title.." "..percent.."%"
 		if string.len(text) <= gradCount then
 			text = text..string.rep(" ",gradCount-string.len(text))
 			form.mon.setBackgroundColor(color)
@@ -121,8 +121,8 @@ function progressBar.new(aform,atext,acolor,aposx,aposy,awidth,amax,adataProvide
 			form.mon.setCursorPos(posx,posy)
 			form.mon.write(text)
 		else
-		temptext = string.sub(text,1,gradCount)
-		temptextend = string.sub(text,gradCount+1)
+			local temptext = string.sub(text,1,gradCount)
+			local temptextend = string.sub(text,gradCount+1)
 			form.mon.setBackgroundColor(color)
 			form.mon.setTextColor(colors.black)
 			form.mon.setCursorPos(posx,posy)
