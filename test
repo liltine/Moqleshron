@@ -1,11 +1,5 @@
 os.loadAPI("/touchApi/buttonApi")
-buttonApi.init("right")
-buttonApi.clear()
-local t=0
-local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
-local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
-local g1 = buttonApi.timeGraph.new("graph1",1,1,38,13,getGraphValue,1)
-buttonApi.redraw()
+
 
 function eventGraber()
 	while true do
@@ -24,5 +18,13 @@ function getGraphValue()
 	t=t+1
 	return (math.sin(t)+1)*5
 end
+
+buttonApi.init("right")
+buttonApi.clear()
+local t=0
+local b = buttonApi.button.new ("test",colors.green,2,16,function() write("test pressed\n") end)
+local b2 = buttonApi.button.new ("test2",colors.green,10,16,function() write("test2 pressed\n") end)
+local g1 = buttonApi.timeGraph.new("graph1",1,1,38,13,getGraphValue,1)
+buttonApi.redraw()
 
 parallel.waitForAny(eventGraber,refresh,g1.run)
