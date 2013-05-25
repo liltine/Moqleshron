@@ -64,7 +64,10 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 	local posy=aposy
 	local form=aform
 	local key=0
+	local tcol=acolor
+	local tbgcol=abgcolor
 	
+	self.blink=false
 	self.text = atext
 	self.color = acolor
 	self.bgcolor = abgcolor
@@ -74,8 +77,16 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 	end
 	
 	function self.draw()
-		form.mon.setBackgroundColor(self.bgcolor)
-		form.mon.setTextColor(self.color)
+		if self.blink then
+			temp = tcol
+			tcol=tbgcol
+			tbgcol=temp
+		else
+			tcol=self.color
+			tbgcol=self.bgcolor
+		end
+		form.mon.setBackgroundColor(tbgcol)
+		form.mon.setTextColor(tcol)
 		form.mon.setCursorPos(posx,posy)
 		form.mon.write(self.text)
 	end
@@ -89,6 +100,41 @@ function label.new(aform,atext,aposx,aposy,acolor,abgcolor)
 	return self
 	
 end
+
+labelDynamic = {}
+function labelDynamic.new(aform,atext,aposx,aposy,acolor,abgcolor,adataProvider)
+	local self = {}
+	local posx=aposx
+	local posy=aposy
+	local form=aform
+	local key=0
+	
+	self.dataProvider=adataProvider
+	self.text = atext
+	self.color = acolor
+	self.bgcolor = abgcolor
+	
+	function self.isClicked(cx,cy)
+	
+	end
+	
+	function self.draw()
+		form.mon.setBackgroundColor(self.bgcolor)
+		form.mon.setTextColor(self.color)
+		form.mon.setCursorPos(posx,posy)
+		form.mon.write(self.text..self.dataProvider())
+	end
+	
+	function self.delete()
+		form.deleteObject(key)
+	end
+	
+	key=form.addObject(self)
+	
+	return self
+	
+end
+
 
 
 progressBar={}
